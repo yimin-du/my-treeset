@@ -40,6 +40,19 @@ public class MyAVLTreeSet<T extends Comparable<T>> implements Iterable<T> {
 		root = deleteNode(root, key);
 	}
 	
+	
+	// check if key exists in the set
+	public boolean contains(T key) {
+		Iterator<T> it = this.iterator();
+		while(it.hasNext()) {
+			if(it.next().equals(key)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
 	@Override
 	public Iterator<T> iterator() {
 		nodes.clear();
@@ -126,8 +139,7 @@ public class MyAVLTreeSet<T extends Comparable<T>> implements Iterable<T> {
 	}
 
 
-	Node deleteNode(Node root, T key)
-	{
+	Node deleteNode(Node root, T key) {
 		// Binary Search Tree DELETE
 		if (root == null)
 			return root;
@@ -143,8 +155,7 @@ public class MyAVLTreeSet<T extends Comparable<T>> implements Iterable<T> {
 		// if key is same as root's key, then this is the node to be deleted
 		else {
 			// node with only one child or no child
-			if ((root.left == null) || (root.right == null))
-			{
+			if ((root.left == null) || (root.right == null)) {
 				Node temp = null;
 				if (temp == root.left)
 					temp = root.right;
@@ -152,8 +163,7 @@ public class MyAVLTreeSet<T extends Comparable<T>> implements Iterable<T> {
 					temp = root.left;
 
 				// No child case
-				if (temp == null)
-				{
+				if (temp == null) {
 					temp = root;
 					root = null;
 				}
@@ -186,8 +196,7 @@ public class MyAVLTreeSet<T extends Comparable<T>> implements Iterable<T> {
 			return rightRotate(root);
 
 		// Left Right Case
-		if (balance > 1 && getBalance(root.left) < 0)
-		{
+		if (balance > 1 && getBalance(root.left) < 0) {
 			root.left = leftRotate(root.left);
 			return rightRotate(root);
 		}
@@ -197,8 +206,7 @@ public class MyAVLTreeSet<T extends Comparable<T>> implements Iterable<T> {
 			return leftRotate(root);
 
 		// Right Left Case
-		if (balance < -1 && getBalance(root.right) > 0)
-		{
+		if (balance < -1 && getBalance(root.right) > 0) {
 			root.right = rightRotate(root.right);
 			return leftRotate(root);
 		}

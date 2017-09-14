@@ -117,4 +117,14 @@ public class MyAVLTreesetTest {
 		List<Integer> orderedNodesExpected = Arrays.asList(0,5,6,9,10,11);
 		assertEquals(orderedNodes, orderedNodesExpected);
 	}
+	
+	
+	@Test
+	public void return_true_if_key_exists() {
+		tree.insert(9);
+		tree.insert(5);
+		tree.insert(10);
+		tree.insert(0);
+		assertEquals(true, tree.contains(5));
+	}
 }
